@@ -39,14 +39,23 @@
 
 ## Why
 
-- What user problem does this solve? Teams need a concrete starting point for building and validating new Kestra plugins without recreating the same project scaffolding from scratch.
-- Why would a team adopt this plugin in a workflow? It gives plugin authors a ready-made reference repo they can adapt alongside their own build, test, and publishing workflow.
-- What operational/business outcome does it enable? It shortens plugin delivery time, reduces setup mistakes, and makes internal or partner plugin development more repeatable.
+- What user problem does this solve? Data teams use dbt with Lightdash for self-serve BI and metrics. When dbt models or upstream data pipelines finish running, teams need an automated way to trigger Lightdash semantic layer compilation, refresh project schemas, query saved charts, and retrieve dashboard definitions.
+- Why would a team adopt this plugin in a workflow? It allows seamless end-to-end orchestration from data ingestion and transformation through to BI layer refresh and alerting in Lightdash.
+- What operational/business outcome does it enable? Eliminates stale BI dashboards by refreshing caches immediately after pipeline runs, provides headless data extraction from saved charts directly into data lakes or internal storage, and enables event-driven workflows when dashboards are updated.
 
 ## What
 
-- Provides plugin components under `io.kestra.plugin.lightdash`.
-- Includes classes such as `Example`, `Trigger`.
+Provides tasks and triggers under `io.kestra.plugin.lightdash`:
+- **Projects**:
+  - `projects.List`: Discover all projects in the organization.
+  - `projects.Refresh`: Trigger dbt project compilation and cache refresh with optional scheduler polling.
+- **Charts**:
+  - `charts.List`: List all saved charts and visualizations in a project.
+  - `charts.Run`: Run saved chart queries with `FETCH`, `FETCH_ONE`, or streaming to Kestra storage (`STORE`).
+- **Dashboards**:
+  - `dashboards.List`: List dashboards in a project.
+  - `dashboards.Get`: Get complete dashboard configurations and tile definitions.
+  - `dashboards.Trigger`: Polling trigger for dashboard updates with namespace KV store watermark tracking.
 
 ## Running Kestra locally with this plugin
 

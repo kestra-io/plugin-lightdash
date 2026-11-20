@@ -1,0 +1,8 @@
+group: io.kestra.plugin.lightdash.dashboards
+name: "dashboards"
+title: "Dashboards"
+description: "Tasks and triggers for managing and monitoring Lightdash dashboards."
+body: "List and retrieve Lightdash dashboard configurations, or trigger flows automatically when dashboards are modified or created."
+videos: []
+createdBy: "Kestra Core Team"
+managedBy: "Kestra Core Team"

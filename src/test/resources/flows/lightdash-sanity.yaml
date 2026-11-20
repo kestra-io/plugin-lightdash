@@ -1,0 +1,42 @@
+id: lightdash_sanity
+namespace: company.analytics
+
+description: |
+  Sanity flow demonstrating end-to-end orchestration with Lightdash:
+  listing organization projects, refreshing semantic layer caches,
+  retrieving dashboard configurations, and executing chart queries.
+
+tasks:
+  - id: list_projects
+    type: io.kestra.plugin.lightdash.projects.List
+    url: "https://app.lightdash.cloud"
+    apiToken: "{{ secret('LIGHTDASH_API_TOKEN') }}"
+
+  - id: refresh_project
+    type: io.kestra.plugin.lightdash.projects.Refresh
+    url: "https://app.lightdash.cloud"
+    apiToken: "{{ secret('LIGHTDASH_API_TOKEN') }}"
+    projectUuid: "{{ outputs.list_projects.projects[0].projectUuid }}"
+    wait: true
+    maxWait: PT10M
+
+  - id: list_dashboards
+    type: io.kestra.plugin.lightdash.dashboards.List
+    url: "https://app.lightdash.cloud"
+    apiToken: "{{ secret('LIGHTDASH_API_TOKEN') }}"
+    projectUuid: "{{ outputs.list_projects.projects[0].projectUuid }}"
+
+  - id: get_dashboard
+    type: io.kestra.plugin.lightdash.dashboards.Get
+    url: "https://app.lightdash.cloud"
+    apiToken: "{{ secret('LIGHTDASH_API_TOKEN') }}"
+    projectUuid: "{{ outputs.list_projects.projects[0].projectUuid }}"
+    dashboardUuid: "{{ outputs.list_dashboards.dashboards[0].uuid }}"
+
+  - id: run_chart
+    type: io.kestra.plugin.lightdash.charts.Run
+    url: "https://app.lightdash.cloud"
+    apiToken: "{{ secret('LIGHTDASH_API_TOKEN') }}"
+    projectUuid: "{{ outputs.list_projects.projects[0].projectUuid }}"
+    chartUuid: "example-chart-uuid"
+    fetchType: FETCH

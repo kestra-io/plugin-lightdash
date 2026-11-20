@@ -1,0 +1,8 @@
+group: io.kestra.plugin.lightdash.charts
+name: "charts"
+title: "Charts"
+description: "Tasks for exploring and executing Lightdash saved charts."
+body: "Interact with Lightdash saved charts, execute analytical queries, and fetch or store results directly into Kestra internal storage."
+videos: []
+createdBy: "Kestra Core Team"
+managedBy: "Kestra Core Team"

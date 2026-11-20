@@ -1,8 +1,8 @@
 group: io.kestra.plugin.lightdash
 name: "lightdash"
 title: "Lightdash"
-description: "Lightdash plugin for Kestra"
-body: ""
+description: "Tasks and triggers to orchestrate projects, charts, and dashboards in Lightdash."
+body: "Connect Kestra with Lightdash to trigger dbt project refreshes, query saved charts, get dashboard definitions, and trigger flows upon dashboard updates."
 videos: []
 createdBy: "Kestra Core Team"
 managedBy: "Kestra Core Team"
