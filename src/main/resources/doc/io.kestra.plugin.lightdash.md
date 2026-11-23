@@ -17,29 +17,30 @@ You can configure these connection properties globally or per namespace using [p
 
 ### Projects
 - `io.kestra.plugin.lightdash.projects.List`: Lists all projects within the authenticated organization.
-  - Optional: `url`, `apiToken`, `requestTimeout`.
+  - Required: `apiToken`.
+  - Optional: `url`, `requestTimeout`.
 - `io.kestra.plugin.lightdash.projects.Refresh`: Triggers a dbt compilation and cache refresh for a project and optionally waits for scheduler job completion.
-  - Required: `projectUuid`.
-  - Optional: `wait`, `pollInterval`, `maxWait`, `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `apiToken`.
+  - Optional: `wait`, `pollInterval`, `maxWait`, `url`, `requestTimeout`.
 
 ### Charts
 - `io.kestra.plugin.lightdash.charts.List`: Lists all saved charts and visualizations in a project.
-  - Required: `projectUuid`.
-  - Optional: `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `apiToken`.
+  - Optional: `url`, `requestTimeout`.
 - `io.kestra.plugin.lightdash.charts.Run`: Executes a saved chart query using the async execution flow and returns results as execution outputs (`FETCH`, `FETCH_ONE`) or streams them directly to Kestra internal storage (`STORE`).
-  - Required: `projectUuid`, `chartUuid`.
-  - Optional: `fetchType`, `pollInterval`, `maxWait`, `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `chartUuid`, `apiToken`.
+  - Optional: `fetchType`, `pollInterval`, `maxWait`, `url`, `requestTimeout`.
 
 ### Dashboards
 - `io.kestra.plugin.lightdash.dashboards.List`: Lists all dashboards in a project.
-  - Required: `projectUuid`.
-  - Optional: `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `apiToken`.
+  - Optional: `url`, `requestTimeout`.
 - `io.kestra.plugin.lightdash.dashboards.Get`: Retrieves the full dashboard JSON definition, including tiles, filters, and spaces.
-  - Required: `projectUuid`, `dashboardUuid`.
-  - Optional: `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `dashboardUuid`, `apiToken`.
+  - Optional: `url`, `requestTimeout`.
 
 ## Triggers
 
 - `io.kestra.plugin.lightdash.dashboards.Trigger`: Polling trigger that detects created or modified dashboards within a project using namespace KV Store watermark tracking.
-  - Required: `projectUuid`, `interval`.
-  - Optional: `url`, `apiToken`, `requestTimeout`.
+  - Required: `projectUuid`, `apiToken`.
+  - Optional: `interval`, `url`, `requestTimeout`.
