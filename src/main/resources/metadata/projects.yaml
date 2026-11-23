@@ -1,0 +1,8 @@
+group: io.kestra.plugin.lightdash.projects
+name: "projects"
+title: "Projects"
+description: "Tasks for managing Lightdash projects and refreshing semantic layers."
+body: "Manage Lightdash projects and trigger semantic layer refreshes to keep metrics and dimensions in sync with your dbt models."
+videos: []
+createdBy: "Kestra Core Team"
+managedBy: "Kestra Core Team"
